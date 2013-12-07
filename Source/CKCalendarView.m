@@ -92,7 +92,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = UIColorFromRGB(0xF2F2F2);
+
+        self.backgroundColor = UIColorFromRGB(0xFFFFFF);
         self.selectedBackgroundColor = UIColorFromRGB(0x88B6DB);
         self.textColor = UIColorFromRGB(0x393B40);
         self.selectedTextColor = UIColorFromRGB(0xF2F2F2);
@@ -147,11 +148,11 @@
     self.onlyShowCurrentMonth = YES;
     self.adaptHeightToNumberOfWeeksInMonth = YES;
 
-    self.layer.cornerRadius = 6.0f;
+    self.layer.cornerRadius = 0.0f;
 
     UIView *highlight = [[UIView alloc] initWithFrame:CGRectZero];
     highlight.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    highlight.layer.cornerRadius = 6.0f;
+    highlight.layer.cornerRadius = 0.0f;
     [self addSubview:highlight];
     self.highlight = highlight;
 
