@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = 'CKCalendar is a sleek, easily customizable calendar control for iOS. ' 
   s.author       = { 'Jason Kozemczak' => 'jason.kozemczak@gmail.com' }                           
   s.source       = { :git => 'git@github.com:bulut/CKCalendar.git', :tag => s.version.to_s}     
-  s.source_files = 'CKCalendar/Source/CKCalendarView.{h,m}'
-  s.resources    = 'CKCalendar/Source/resources/*.png'
+  s.source_files = 'Source/CKCalendarView.{h,m}'
+  s.resources    = 'Source/resources/*.png'
   s.license      = 'MIT'                                                       
 end
