@@ -180,13 +180,13 @@
 
     // THE CALENDAR ITSELF
     UIView *calendarContainer = [[UIView alloc] initWithFrame:CGRectZero];
-    calendarContainer.layer.borderWidth = 1.0f;
-    calendarContainer.layer.borderColor = [UIColor blackColor].CGColor;
     calendarContainer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-    calendarContainer.layer.cornerRadius = 4.0f;
+   
     calendarContainer.clipsToBounds = YES;
+    calendarContainer.layer.cornerRadius = 4.0f;
     [self addSubview:calendarContainer];
     self.calendarContainer = calendarContainer;
+
 
     GradientView *daysHeader = [[GradientView alloc] initWithFrame:CGRectZero];
     daysHeader.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -262,6 +262,8 @@
     self.highlight.frame = CGRectMake(1, 1, self.bounds.size.width - 2, 1);
 
     self.titleLabel.text = [self.dateFormatter stringFromDate:_monthShowing];
+    self.titleLabel.shadowOffset = CGSizeMake(0, -1);
+    self.titleLabel.shadowColor = [UIColor blackColor];
     self.titleLabel.frame = CGRectMake(0, 0, self.bounds.size.width, TOP_HEIGHT);
     self.prevButton.frame = CGRectMake(BUTTON_MARGIN, BUTTON_MARGIN, 48, 38);
     self.nextButton.frame = CGRectMake(self.bounds.size.width - 48 - BUTTON_MARGIN, BUTTON_MARGIN, 48, 38);
@@ -302,7 +304,7 @@
         CKDateItem *item = [[CKDateItem alloc] init];
         if ([self _dateIsToday:dateButton.date]) {
             item.textColor = UIColorFromRGB(0xF2F2F2);
-            item.backgroundColor = [UIColor lightGrayColor];
+            item.backgroundColor = UIColorFromRGB(0xAAAAAA);
         } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor lightGrayColor];
         }
@@ -313,7 +315,7 @@
 
         if (self.selectedDate && [self date:self.selectedDate isSameDayAsDate:date]) {
             [dateButton setTitleColor:item.selectedTextColor forState:UIControlStateNormal];
-            dateButton.backgroundColor = item.selectedBackgroundColor;
+            dateButton.backgroundColor = UIColorFromRGB(0x3CBBDF);
         } else {
             [dateButton setTitleColor:item.textColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.backgroundColor;
@@ -417,7 +419,7 @@
 }
 
 - (void)_setDefaultStyle {
-    self.backgroundColor = UIColorFromRGB(0x393B40);
+   self.backgroundColor = UIColorFromRGB(0x393B40);
 
     [self setTitleColor:[UIColor whiteColor]];
     [self setTitleFont:[UIFont boldSystemFontOfSize:17.0]];
@@ -542,7 +544,7 @@
 }
 
 - (void)setDateBorderColor:(UIColor *)color {
-    self.calendarContainer.backgroundColor = color;
+    self.calendarContainer.backgroundColor = UIColorFromRGB(0xE8E8E8);
 }
 - (UIColor *)dateBorderColor {
     return self.calendarContainer.backgroundColor;
