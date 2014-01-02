@@ -329,6 +329,16 @@
         dateButtonPosition++;
     }
     
+    // if current months startdate is less than/equal to minimum date, disable prevButton
+    if (self.minimumDate != nil) {
+        [self.prevButton setEnabled: ([self _compareByMonth:self.minimumDate toDate:self.monthShowing] != NSOrderedSame)];
+    }
+    
+    // if current months enddate is greater than/equal to maximum date, disable nextButton
+    if (self.maximumDate != nil) {
+        [self.nextButton setEnabled: ([self _compareByMonth:self.maximumDate toDate:self.monthShowing] != NSOrderedSame)];
+    }
+    
     if ([self.delegate respondsToSelector:@selector(calendar:didLayoutInRect:)]) {
         [self.delegate calendar:self didLayoutInRect:self.frame];
     }

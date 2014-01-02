@@ -44,6 +44,9 @@ typedef enum {
 @property (nonatomic) BOOL onlyShowCurrentMonth;
 @property (nonatomic) BOOL adaptHeightToNumberOfWeeksInMonth;
 
+@property(nonatomic, strong) NSDate *minimumDate;
+@property(nonatomic, strong) NSDate *maximumDate;
+
 @property (nonatomic, weak) id<CKCalendarDelegate> delegate;
 
 // Theming
