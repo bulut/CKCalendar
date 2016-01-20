@@ -299,16 +299,13 @@
     NSUInteger dateButtonPosition = 0;
     while ([date laterDate:endDate] != date) {
         DateButton *dateButton = [self.dateButtons objectAtIndex:dateButtonPosition];
-
         dateButton.date = date;
         CKDateItem *item = [[CKDateItem alloc] init];
-        if ([self _dateIsToday:dateButton.date]) {
-            item.textColor = UIColorFromRGB(0xF2F2F2);
+        
+        if ([self _dateIsGreaterThenToday:dateButton.date]){
             item.backgroundColor = UIColorFromRGB(0xAAAAAA);
-        } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
-            item.textColor = [UIColor lightGrayColor];
         }
-
+        
         if (self.delegate && [self.delegate respondsToSelector:@selector(calendar:configureDateItem:forDate:)]) {
             [self.delegate calendar:self configureDateItem:item forDate:date];
         }
@@ -603,6 +600,14 @@
 
 - (BOOL)_dateIsToday:(NSDate *)date {
     return [self date:[NSDate date] isSameDayAsDate:date];
+}
+
+- (BOOL)_dateIsGreaterThenToday:(NSDate *)date {
+    if( [date timeIntervalSinceDate:[NSDate date]] > 0 ) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 - (BOOL)date:(NSDate *)date1 isSameDayAsDate:(NSDate *)date2 {
